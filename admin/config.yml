@@ -5,8 +5,8 @@ backend:
   repo: jeerasakrlgroup/ratiratlegalgroup
   branch: main
 
-site_url: https://jeerasakrlgroup.github.io/ratiratlegalgroup/
-display_url: https://jeerasakrlgroup.github.io/ratiratlegalgroup/
+site_url: https://www.ratiratlegalgroup.com/
+display_url: https://www.ratiratlegalgroup.com/
 
 # Uploaded pictures go to images/uploads; paths are stored relative so the site works under /ratiratlegalgroup/
 media_folder: images/uploads
