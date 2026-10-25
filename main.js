@@ -14,7 +14,7 @@ function renderCards(boxId, items, kind) {
   const pages = Math.ceil(items.length / PER_PAGE);
   const card = a => `
     <a class="post" href="#${kind}-${esc(a.id)}">
-      <img src="${esc(a.cover || 'logo-full.png')}" alt="" class="post-img${a.coverFill ? ' fill' : ''}" loading="lazy">
+      <img src="${esc(a.cover || 'logo-full.png?v=2')}" alt="" class="post-img${a.coverFill ? ' fill' : ''}" loading="lazy">
       ${both(a.date, 'small')}
       ${both(a.title, 'h3')}
       ${a.place ? `<p class="post-place">📍 ${both(a.place, 'span')}</p>` : ''}
