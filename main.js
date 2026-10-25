@@ -53,7 +53,7 @@ const fromNews = (n, i) => {
     title: { th: n.title_th, en: n.title_en },
     place: n.place_th ? { th: n.place_th, en: n.place_en } : null,
     cover: n.cover || (pics('th')[0] || {}).img,
-    body: { th: [...paras(n.body_th), ...pics('th')], en: n.body_en ? [...paras(n.body_en), ...pics('en')] : null }
+    body: { th: [...paras(n.body_th), ...pics('th')], en: [...paras(n.body_en || n.body_th), ...pics('en')] }
   };
 };
 const fromArticle = (a, i) => {
@@ -65,7 +65,7 @@ const fromArticle = (a, i) => {
     date: { th: label('th'), en: label('en') },
     title: { th: a.title_th, en: a.title_en },
     cover: a.cover || a.image,
-    body: { th: [...pic('th'), ...paras(a.body_th)], en: a.body_en ? [...pic('en'), ...paras(a.body_en)] : null }
+    body: { th: [...pic('th'), ...paras(a.body_th)], en: [...pic('en'), ...paras(a.body_en || a.body_th)] }
   };
 };
 const loadJson = path => fetch(path, { cache: 'no-cache' }).then(r => r.ok ? r.json() : { items: [] }).catch(() => ({ items: [] }));
