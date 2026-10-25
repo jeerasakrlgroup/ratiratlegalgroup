@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "id": "adultery-cjfc-2569-10-09",
+      "date": "2026-10-09",
+      "title_th": "ดำเนินการฟ้องชู้ เรียกค่าทดแทน",
+      "title_en": "Filing a compensation claim against a third party (adultery)",
+      "place_th": "ศาลเยาวชนและครอบครัวกลาง",
+      "place_en": "Central Juvenile and Family Court",
+      "cover": "images/news-2-cover.jpg",
+      "body_th": "วันที่ 9 ตุลาคม 2569 ดำเนินการ ฟ้องชู้ เรียกค่าทดแทน ณ ศาลเยาวชนและครอบครัวกลาง",
+      "body_en": "9 October 2026: filed a claim for compensation against a third party in an adultery case at the Central Juvenile and Family Court.",
+      "images": [
+        { "image": "images/news-2.jpg", "caption_th": "ศาลเยาวชนและครอบครัวกลาง", "caption_en": "Central Juvenile and Family Court" }
+      ]
+    },
+    {
+      "id": "hire-purchase-nsw-2569-10-05",
+      "date": "2026-10-05",
+      "title_th": "ไกล่เกลี่ยและสืบพยาน คดีเช่าซื้อ",
+      "title_en": "Mediation and witness hearing in a hire-purchase case",
+      "place_th": "ศาลจังหวัดนครสวรรค์",
+      "place_en": "Nakhon Sawan Provincial Court",
+      "cover": "images/news-3-cover.jpg",
+      "body_th": "วันที่ 5 ตุลาคม 2569 ไกล่เกลี่ยและสืบพยาน คดีเช่าซื้อ ห้องพิจารณาคดีที่ 9 ศาลจังหวัดนครสวรรค์",
+      "body_en": "5 October 2026: mediation and witness hearing in a hire-purchase case, Courtroom 9, Nakhon Sawan Provincial Court.",
+      "images": [
+        { "image": "images/news-3.jpg", "caption_th": "ห้องพิจารณาคดีที่ 9 ศาลจังหวัดนครสวรรค์", "caption_en": "Courtroom 9, Nakhon Sawan Provincial Court" }
+      ]
+    },
+    {
+      "id": "cheque-roiet-2569-09-21",
+      "date": "2026-09-21",
+      "title_th": "สืบพยานคดี พ.ร.บ.ว่าด้วยความผิดอันเกิดจากการใช้เช็ค",
+      "title_en": "Witness hearing in a cheque offence case",
+      "place_th": "ศาลจังหวัดร้อยเอ็ด",
+      "place_en": "Roi Et Provincial Court",
+      "cover": "images/news-1-cover.jpg",
+      "body_th": "วันที่ 21 กันยายน 2569 สืบพยานคดี พระราชบัญญัติว่าด้วยความผิดอันเกิดจากการใช้เช็ค ณ ศาลจังหวัดร้อยเอ็ด",
+      "body_en": "21 September 2026: witness hearing in a case under the Cheque Offences Act at Roi Et Provincial Court.",
+      "images": [
+        { "image": "images/news-1.jpg", "caption_th": "ศาลจังหวัดร้อยเอ็ด", "caption_en": "Roi Et Provincial Court" }
+      ]
+    },
+    {
+      "id": "appeal-chainat-2569-06-17",
+      "date": "2026-06-17",
+      "title_th": "ยื่นอุทธรณ์คดีเช่าซื้อ",
+      "title_en": "Filing an appeal in a hire-purchase case",
+      "place_th": "ศาลจังหวัดชัยนาท",
+      "place_en": "Chai Nat Provincial Court",
+      "cover": "images/news-4-cover.jpg",
+      "body_th": "วันที่ 17 มิถุนายน 2569 ยื่นอุทธรณ์คดีเช่าซื้อ ณ ศาลจังหวัดชัยนาท",
+      "body_en": "17 June 2026: filed an appeal in a hire-purchase case at Chai Nat Provincial Court.",
+      "images": [
+        { "image": "images/news-4.jpg", "caption_th": "ศาลจังหวัดชัยนาท", "caption_en": "Chai Nat Provincial Court" }
+      ]
+    }
+  ]
+}

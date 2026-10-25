@@ -1,0 +1,80 @@
+# Sveltia CMS settings for the Ratirat Legal Group site.
+# Editors sign in with "Sign In with Token" (GitHub fine-grained token, Contents: Read and write on this repo).
+backend:
+  name: github
+  repo: jeerasakrlgroup/ratiratlegalgroup
+  branch: main
+
+site_url: https://jeerasakrlgroup.github.io/ratiratlegalgroup/
+display_url: https://jeerasakrlgroup.github.io/ratiratlegalgroup/
+
+# Uploaded pictures go to images/uploads; paths are stored relative so the site works under /ratiratlegalgroup/
+media_folder: images/uploads
+public_folder: images/uploads
+
+# Phone photos are shrunk and converted to WebP on upload, so the site stays fast
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1600
+          height: 1600
+
+collections:
+  - name: content
+    label: เนื้อหาเว็บไซต์
+    files:
+      - name: news
+        label: ข่าวสาร
+        file: content/news.json
+        fields:
+          - name: items
+            label: รายการข่าว
+            label_singular: ข่าว
+            widget: list
+            add_to_top: true
+            summary: "{{fields.date}} · {{fields.title_th}}"
+            fields:
+              - { name: id, label: รหัส (สร้างให้อัตโนมัติ), widget: uuid, read_only: true }
+              - { name: date, label: วันที่, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+              - { name: title_th, label: หัวข้อข่าว }
+              - { name: place_th, label: สถานที่ (เช่น ศาลจังหวัดนนทบุรี), required: false }
+              - { name: cover, label: รูปหน้าปก (ถ้าไม่ใส่ จะใช้รูปแรกด้านล่าง), widget: image, required: false }
+              - { name: body_th, label: รายละเอียด (เว้นบรรทัดว่างเพื่อขึ้นย่อหน้าใหม่), widget: text, required: false }
+              - name: images
+                label: รูปประกอบ
+                label_singular: รูป
+                widget: list
+                required: false
+                fields:
+                  - { name: image, label: รูป, widget: image }
+                  - { name: caption_th, label: คำบรรยายใต้รูป, required: false }
+                  - { name: caption_en, label: คำบรรยายภาษาอังกฤษ (ไม่บังคับ), required: false }
+              - { name: title_en, label: หัวข้อภาษาอังกฤษ (ไม่บังคับ), required: false }
+              - { name: place_en, label: สถานที่ภาษาอังกฤษ (ไม่บังคับ), required: false }
+              - { name: body_en, label: รายละเอียดภาษาอังกฤษ (ไม่บังคับ), widget: text, required: false }
+
+      - name: articles
+        label: บทความกฎหมาย
+        file: content/articles.json
+        fields:
+          - name: items
+            label: รายการบทความ
+            label_singular: บทความ
+            widget: list
+            add_to_top: true
+            summary: "{{fields.date}} · {{fields.title_th}}"
+            fields:
+              - { name: id, label: รหัส (สร้างให้อัตโนมัติ), widget: uuid, read_only: true }
+              - { name: date, label: วันที่, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+              - { name: ruling, label: เลขคำพิพากษาศาลฎีกา (เช่น 4920/2567), required: false }
+              - { name: title_th, label: หัวข้อบทความ }
+              - { name: image, label: รูปบทความ (infographic), widget: image }
+              - { name: cover, label: รูปหน้าปก (ถ้าไม่ใส่ จะใช้รูปบทความ), widget: image, required: false }
+              - { name: body_th, label: ข้อความ (เว้นบรรทัดว่างเพื่อขึ้นย่อหน้าใหม่), widget: text, required: false }
+              - { name: title_en, label: หัวข้อภาษาอังกฤษ (ไม่บังคับ), required: false }
+              - { name: body_en, label: ข้อความภาษาอังกฤษ (ไม่บังคับ), widget: text, required: false }
