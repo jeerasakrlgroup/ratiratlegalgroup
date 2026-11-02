@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ทดสอบฟอร์ม · Ratirat Legal Group</title>
+<link rel="icon" href="../favicon.ico?v=3" sizes="any">
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0f2340; font-family: 'Noto Sans Thai', system-ui, sans-serif; color: #1c2533; }
+  .box { background: #fff; border-radius: 14px; padding: 28px 24px; width: min(420px, calc(100% - 32px)); box-sizing: border-box; text-align: center; }
+  h1 { font-size: 1.25rem; margin: 0 0 6px; color: #0f2340; }
+  p { margin: 0 0 18px; color: #5a6475; font-size: .92rem; }
+  button { background: #c9a24b; color: #0f2340; border: 0; border-radius: 8px; padding: 12px 22px; font: inherit; font-weight: 700; cursor: pointer; width: 100%; }
+  button:disabled { opacity: .6; cursor: wait; }
+  #out { margin-top: 18px; font-size: .95rem; white-space: pre-line; }
+  .ok { color: #1a7f37; } .bad { color: #b42318; }
+</style>
+</head>
+<body>
+<!-- quick check that the contact form still delivers: sends one test message to the form owner only (no _cc) -->
+<main class="box">
+  <h1>ทดสอบการส่งเมลของฟอร์มติดต่อ</h1>
+  <p>ส่งข้อความทดสอบ 1 ฉบับ ไปที่ผู้ดูแลระบบเท่านั้น<br>(ไม่ส่งสำเนาให้สำนักงาน)</p>
+  <button id="send" type="button">ส่งเมลทดสอบ</button>
+  <div id="out"></div>
+</main>
+<script>
+const out = document.getElementById('out'), btn = document.getElementById('send');
+const say = (cls, text) => { out.className = cls; out.textContent = text; };
+btn.addEventListener('click', async () => {
+  btn.disabled = true;
+  say('', 'กำลังส่ง…');
+  const now = new Date().toLocaleString('th-TH');
+  try {
+    // use the same form ID the live contact form uses, so this tests the real setup
+    const js = await fetch('../main.js', { cache: 'no-cache' }).then(r => r.text());
+    const id = (js.match(/FORM_ID = '([0-9a-f]+)'/) || [])[1];
+    if (!id) throw new Error('ไม่พบรหัสฟอร์มใน main.js');
+    const res = await fetch('https://formsubmit.co/ajax/' + id, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: '[ทดสอบ] ฟอร์มเว็บไซต์ ' + now,
+        _template: 'table',
+        'ผลการทดสอบ': 'ฟอร์มติดต่อบนเว็บไซต์ยังส่งเมลได้ปกติ',
+        'เวลา': now,
+        'หน้าเว็บ': location.origin
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && String(data.success) === 'true') say('ok', '✅ ส่งสำเร็จ ' + now + '\nเช็กกล่องเมลผู้ดูแลระบบ (รวม Spam)');
+    else if (/activat/i.test(data.message || '')) say('bad', '⚠️ ฟอร์มยังไม่ได้ Activate สำหรับเว็บนี้\nเปิดเมล "Activate Form" ล่าสุด กดยืนยัน แล้วกดส่งอีกครั้ง');
+    else throw new Error(data.message || 'HTTP ' + res.status);
+  } catch (e) {
+    say('bad', '🔴 ส่งไม่สำเร็จ: ' + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
