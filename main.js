@@ -153,11 +153,9 @@ const io = new IntersectionObserver(entries => {
 });
 document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
 
-// contact form — sent through FormSubmit (no server needed). The form is registered to the site admin
-// (Jeerasak, who activated it in FormSubmit); every message is also copied to the office (MAIL_CC).
-// FORM_ID is FormSubmit's alias for Jeerasak.rlgroup@gmail.com, issued after activation (hides the address).
-const FORM_ID = '8b0e9951ce59a6d5a0e6763146968a4f';
-const MAIL_CC = 'ratirat.rlgroup@gmail.com,Thippawan.rlgroup@gmail.com';
+// contact form — posted to a Google Apps Script web app in the site admin's (Jeerasak's) Google account,
+// which mails the office and copies the admin (script source: Doc\form-mailer.gs, kept outside this repo).
+const FORM_URL = 'https://script.google.com/macros/s/AKfycbx56hGg6CbFw1CzYJ5fBCpvGoL_zNtn4AnyNbj-fxFFHdJZF9VZm5QikPx1wZ_CaAyE/exec';
 const form = document.getElementById('form');
 
 // Thai phone: 0 + 8–9 digits (02-xxx-xxxx landline, 08x-xxx-xxxx mobile); dashes/spaces allowed
@@ -187,23 +185,22 @@ form.addEventListener('submit', async e => {
   btn.disabled = true;
   btn.textContent = document.documentElement.lang === 'en' ? 'Sending…' : 'กำลังส่ง…';
   try {
-    const res = await fetch('https://formsubmit.co/ajax/' + FORM_ID, {
+    // text/plain keeps this a "simple" request (no CORS preflight, which Apps Script does not answer)
+    const res = await fetch(FORM_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({
-        _subject: 'ติดต่อจากเว็บไซต์: ' + f.get('name'),
-        _template: 'table',
-        _cc: MAIL_CC,
-        _replyto: f.get('email') || undefined,
-        'ชื่อ-นามสกุล': f.get('name'),
-        'เบอร์โทร': f.get('phone'),
-        'อีเมล': f.get('email') || '-',
-        'ประเภทคดี': f.get('type'),
-        'รายละเอียด': f.get('msg') || '-'
+        fields: {
+          'ชื่อ-นามสกุล': f.get('name'),
+          'เบอร์โทร': f.get('phone'),
+          'อีเมล': f.get('email') || '-',
+          'ประเภทคดี': f.get('type'),
+          'รายละเอียด': f.get('msg') || '-'
+        }
       })
     });
     const data = await res.json().catch(() => ({}));
-    if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || res.status);
+    if (!res.ok || data.ok !== true) throw new Error(data.message || res.status);
     ok.hidden = false;
     form.reset();
   } catch (x) {

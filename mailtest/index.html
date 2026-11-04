@@ -33,24 +33,18 @@ btn.addEventListener('click', async () => {
   say('', 'กำลังส่ง…');
   const now = new Date().toLocaleString('th-TH');
   try {
-    // use the same form ID the live contact form uses, so this tests the real setup
+    // use the same Apps Script URL the live contact form uses, so this tests the real setup;
+    // test:true makes the script mail the admin only
     const js = await fetch('../main.js', { cache: 'no-cache' }).then(r => r.text());
-    const id = (js.match(/FORM_ID = '([0-9a-f]+)'/) || [])[1];
-    if (!id) throw new Error('ไม่พบรหัสฟอร์มใน main.js');
-    const res = await fetch('https://formsubmit.co/ajax/' + id, {
+    const url = (js.match(/FORM_URL = '(https:[^']+)'/) || [])[1];
+    if (!url) throw new Error('ไม่พบที่อยู่ฟอร์มใน main.js');
+    const res = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _subject: '[ทดสอบ] ฟอร์มเว็บไซต์ ' + now,
-        _template: 'table',
-        'ผลการทดสอบ': 'ฟอร์มติดต่อบนเว็บไซต์ยังส่งเมลได้ปกติ',
-        'เวลา': now,
-        'หน้าเว็บ': location.origin
-      })
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ test: true, source: 'หน้า mailtest ' + location.origin })
     });
     const data = await res.json().catch(() => ({}));
-    if (res.ok && String(data.success) === 'true') say('ok', '✅ ส่งสำเร็จ ' + now + '\nเช็กกล่องเมลผู้ดูแลระบบ (รวม Spam)');
-    else if (/activat/i.test(data.message || '')) say('bad', '⚠️ ฟอร์มยังไม่ได้ Activate สำหรับเว็บนี้\nเปิดเมล "Activate Form" ล่าสุด กดยืนยัน แล้วกดส่งอีกครั้ง');
+    if (res.ok && data.ok === true) say('ok', '✅ ส่งสำเร็จ ' + now + '\nเช็กกล่องเมลผู้ดูแลระบบ (รวม Spam)');
     else throw new Error(data.message || 'HTTP ' + res.status);
   } catch (e) {
     say('bad', '🔴 ส่งไม่สำเร็จ: ' + e.message);
