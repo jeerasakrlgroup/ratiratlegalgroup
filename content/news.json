@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "id": "3e29f961-4a85-4ee4-ac81-cfe020a24c35",
+      "date": "2026-11-05",
+      "title_th": "ยื่นขอขยายอุทธรณ์ คดียาเสพติด ณ ศาลจังหวัดชัยบาดาล",
+      "place_th": "ศาลจังหวัดชัยบาดาล",
+      "cover": "",
+      "body_th": "วันที่ 5 พฤศจิกายน 2569 ยื่นขอขยายอุทธรณ์ คดียาเสพติด เนื่องจากจำเลยไม่มีทนายในศาลชั้นต้น และประสงค์จะขออุทธรณ์คำพิพากษาของศาลชั้นต้น",
+      "images": [
+        {
+          "image": "/images/uploads/20261105_ยื่นขอขยายอุทธรณ์ คดียาเสพติด ณ ศาลจังหวัดชัยบาดาล.webp",
+          "caption_th": "ศาลจังหวัดชัยบาดาล",
+          "caption_en": "Chai Badan Provincial Court"
+        }
+      ],
+      "title_en": "Submitted a request to extend the appeal period in a drug case at the Chai Badan Provincial Court.",
+      "place_en": "Chai Badan Provincial Court",
+      "body_en": "On November 5, 2026, a request was filed to extend the appeal period in the drug case because the defendant did not have a lawyer in the court of first instance and wished to appeal the court of first instance's judgment."
+    },
+    {
       "id": "89404e13-5431-4d81-b9ec-577ccdbeb43b",
       "date": "2026-11-04",
       "title_th": "ยื่นฎีกาคดีเช่าซื้อ (รถยนต์)",
