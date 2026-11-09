@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "id": "315c9c9d-4f1a-4f2d-975f-6b1458813a98",
+      "date": "2026-11-09",
+      "title_th": "สืบพยานคดีเช่าซื้อ (รถยนต์) ณ ศาลจังหวัดน่าน สาขาปัว",
+      "place_th": "ศาลจังหวัดน่าน สาขาปัว",
+      "cover": "",
+      "body_th": "วันที่ 9 พฤศจิกายน 2569 สืบพยานคดีเช่าซื้อ (รถยนต์) ณ ศาลจังหวัดน่าน สาขาปัว",
+      "images": [
+        {
+          "image": "/images/uploads/20261109_สืบพยานคดีเช่าซื้อ (รถยนต์) ที่ศาลจังหวัดน่าน สาขาปัว.webp",
+          "caption_th": "ศาลจังหวัดน่าน สาขาปัว",
+          "caption_en": ""
+        }
+      ],
+      "title_en": "Witness testimony in a hire-purchase (vehicle) case at the Nan Provincial Court, Pua Branch.",
+      "place_en": "Nan Provincial Court, Pua Branch",
+      "body_en": "On November 9, 2026, witness testimony was taken in a hire-purchase (vehicle) case at the Nan Provincial Court, Pua Branch."
+    },
+    {
       "id": "3e29f961-4a85-4ee4-ac81-cfe020a24c35",
       "date": "2026-11-05",
       "title_th": "ยื่นขอขยายอุทธรณ์ คดียาเสพติด ณ ศาลจังหวัดชัยบาดาล",
